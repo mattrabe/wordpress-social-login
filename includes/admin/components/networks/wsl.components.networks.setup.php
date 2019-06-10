@@ -188,7 +188,7 @@ function wsl_component_networks_setup()
 				<br />
 				<div
 					class="wsl_div_settings_help_<?php echo $provider_id; ?>"
-					style="<?php if( isset( $_REQUEST["enable"] ) && ! isset( $_REQUEST["settings-updated"] ) && $_REQUEST["enable"] == $provider_id ) echo "-"; // <= lolz ?>display:none;"
+					style="margin: 0 20px; <?php if( isset( $_REQUEST["enable"] ) && ! isset( $_REQUEST["settings-updated"] ) && $_REQUEST["enable"] == $provider_id ) echo "-"; // <= lolz ?>display:none;"
 				>
 					<hr class="wsl" />
 					<?php if (  $provider_id == "Steam" ) : ?>
@@ -204,7 +204,7 @@ function wsl_component_networks_setup()
 					<?php else: ?>
 							<p><?php echo sprintf( _wsl__('<b>Done.</b> Nothing more required for <b>%s</b>', 'wordpress-social-login'), $provider_name) ?>.</p>
 					<?php endif; ?>
-					<div style="margin-left:40px;">
+					<div style="margin-left:20px;">
 						<?php if ( $provider_new_app_link  ) : ?>
 							<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php echo sprintf( _wsl__( 'First go to: <a href="%s" target ="_blank">%s</a>', 'wordpress-social-login'), $provider_new_app_link, $provider_new_app_link ) ?></p>
 
@@ -220,12 +220,18 @@ function wsl_component_networks_setup()
 									<li><?php _wsl_e("Put your website domain in the <b>Authorized JavaScript origins</b> field. This should match with the current hostname", 'wordpress-social-login') ?> <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"]; ?></em>.</li>
 									<li><?php _wsl_e("Provide this URL as the <b>Authorized redirect URI</b> for your application", 'wordpress-social-login') ?>: <br /><?php echo $provider_callback_url ?></li>
 								</ul>
-							<?php elseif ( $provider_id == "Facebook" ) : ?>
+							<?php elseif ( $provider_id == "Facebook" ) : ?>								
 								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Select <b>Add a New App</b> from the <b>Apps</b> menu at the top", 'wordpress-social-login') ?>.</p>
-								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Fill out Display Name, Namespace, choose a category and click <b>Create App</b>", 'wordpress-social-login') ?>.</p>
-								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Go to Settings page and click on <b>Add Platform</b>. Choose website and enter in the new screen your website url in <b>App Domains</b> and <b>Site URL</b> fields", 'wordpress-social-login') ?>.
-									<?php _wsl_e("They should match with the current hostname", 'wordpress-social-login') ?> <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"]; ?></em>.</p>
-								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Go to the <b>Status & Review</b> page and choose <b>yes</b> where it says <b>Do you want to make this app and all its live features available to the general public?</b>", 'wordpress-social-login') ?>.</p>
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Fill out Display Name and Contact Email. Then click <b>Create App ID</b>", 'wordpress-social-login') ?>.</p>
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("On the next screen for \"Select a Scenerio\", select the option for <b>Integrate Facebook Login</b>. Then click <b>Confirm</b>", 'wordpress-social-login') ?>.</p>
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("On the left menu, under <b>Facebook Login</b>, click on <b>Settings</b>", 'wordpress-social-login') ?>.</p>
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("On the \"Client OAuth Settings\" page, make sure that <b>Client OAuth Login</b> and <b>Web OAuth Login</b> are switched to \"Yes\"", 'wordpress-social-login') ?>.</p>
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Then, enter the <b>Valid OAuth Redirect URIs</b>. It should look like this: ", 'wordpress-social-login') ?><?php echo  "<b>" . site_url() . "/wp-content/plugins/wordpress-social-login/hybridauth/?hauth.done=Facebook</b>"; ?>.
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("On the left menu, under <b>Settings</b>, and click on <b>Basic</b>. Then enter <b>App Domains</b> and <b>Privacy Policy URL</b>", 'wordpress-social-login') ?>.</p>
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Then, click on <b>Add Platform</b>. Click on <b>Website</b>. On the <b>Settings > Basic</b> page, under \"Website\" enter <b>Site URL</b>", 'wordpress-social-login') ?>.
+								<?php _wsl_e("It should match with the current hostname", 'wordpress-social-login') ?> <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"]; ?></em>.</p>
+
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Click on <b>Save Settings</b>", 'wordpress-social-login') ?>.</p>
 							<?php else: ?>
 								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Create a new application", 'wordpress-social-login') ?>.</p>
 								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Fill out any required fields such as the application name and description", 'wordpress-social-login') ?>.</p>
@@ -252,7 +258,7 @@ function wsl_component_networks_setup()
 							<?php elseif ( $provider_id == "Twitter" ) : ?>
 								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Once you have registered, past the created application credentials (Consumer Key and Secret) into the boxes above", 'wordpress-social-login') ?>.</p>
 							<?php elseif ( $provider_id == "Facebook" ) : ?>
-								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Go back to the <b>Dashboard</b> page and past the created application credentials (APP ID and Secret) into the boxes above", 'wordpress-social-login') ?>.</p>
+								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("On the <b>Settings > Basic</b> page and past the created application credentials (App ID and App Secret) into the boxes above", 'wordpress-social-login') ?>.</p>
 							<?php else: ?>
 								<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> <?php _wsl_e("Once you have registered, past the created application credentials into the boxes above", 'wordpress-social-login') ?>.</p>
 							<?php endif; ?>

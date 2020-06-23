@@ -932,6 +932,7 @@ function wsl_process_login_build_provider_config( $provider )
 	{
 		$config["providers"][$provider]["display"] = "popup";
 		$config["providers"][$provider]["trustForwarded"] = true;
+		$config["providers"][$provider]["scope"] = "email,public_profile";
 
 		// switch to fb::display 'page' if wsl auth in page
 		if( get_option( 'wsl_settings_use_popup') == 2 )

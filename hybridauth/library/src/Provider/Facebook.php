@@ -120,7 +120,7 @@ class Facebook extends OAuth2
 
         $userProfile->photoURL = $this->apiBaseUrl . $userProfile->identifier . '/picture?width=' . $photoSize . '&height=' . $photoSize;
 
-        $userProfile->emailVerified = $data->get('verified') == 1 ? $userProfile->email : '';
+        $userProfile->emailVerified = $userProfile->email;
 
         $userProfile = $this->fetchUserRegion($userProfile);
 
